@@ -53,10 +53,10 @@
         name: string;
         isHealthy: boolean;
 
-        constructor(name: string){
-             this.food = Math.round(Math.random() * 100);
+        constructor(name: string, food: number, isHealthy: boolean){
+             this.food = food;
              this.name = name;
-             this.isHealthy = true;
+             this.isHealthy = isHealthy;
          }
 
         hunt(): number{
@@ -85,10 +85,11 @@
     //Create the code required to satisfy the contract with the interface 
     class Wagon implements IWagon {
         capacity: number;
-        passengerArray: Traveler[] = [];
+        passengerArray: Traveler[];
 
-        constructor(capacity: number){
+        constructor(capacity: number, travelers: Array<Traveler>){
             this.capacity = capacity;
+            this.passengerArray = travelers;    
         }
 
         addPassenger(traveler: Traveler): string{
@@ -122,14 +123,14 @@
     }
 
     //create passengers
-    let tOne = new Traveler("David");
-    let tTwo = new Traveler("Jagger");
-    let tThree = new Traveler("Beth");
-    let tFour = new Traveler("Lori");
-    let tFive = new Traveler("Britta");
+    let tOne = new Traveler("David", Math.round(Math.random() * 100), true);
+    let tTwo = new Traveler("Jagger", Math.round(Math.random() * 100), true);
+    let tThree = new Traveler("Beth", Math.round(Math.random() * 100), true);
+    let tFour = new Traveler("Lori", Math.round(Math.random() * 100), true);
+    let tFive = new Traveler("Britta", Math.round(Math.random() * 100), true);
 
     //create wagon
-    let wagon = new Wagon(4);
+    let wagon = new Wagon(4, []);
 
     //Eat
     console.log("Traveler " + tOne.name + " ate.  is Healthy: " + tOne.eat()+ " Total Food: " + tOne.food);

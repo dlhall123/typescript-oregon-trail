@@ -9,10 +9,10 @@
     //This is currently in violation of its contract with the interface. 
     //Create the code required to satisfy the contract with the interface
     var Traveler = /** @class */ (function () {
-        function Traveler(name) {
-            this.food = Math.round(Math.random() * 100);
+        function Traveler(name, food, isHealthy) {
+            this.food = food;
             this.name = name;
-            this.isHealthy = true;
+            this.isHealthy = isHealthy;
         }
         Traveler.prototype.hunt = function () {
             if (Math.random() >= .5) {
@@ -35,9 +35,9 @@
     //This is currently in violation of its contract with the interface.
     //Create the code required to satisfy the contract with the interface 
     var Wagon = /** @class */ (function () {
-        function Wagon(capacity) {
-            this.passengerArray = [];
+        function Wagon(capacity, travelers) {
             this.capacity = capacity;
+            this.passengerArray = travelers;
         }
         Wagon.prototype.addPassenger = function (traveler) {
             if (this.passengerArray.length < this.capacity) {
@@ -64,13 +64,13 @@
         return Wagon;
     }());
     //create passengers
-    var tOne = new Traveler("David");
-    var tTwo = new Traveler("Jagger");
-    var tThree = new Traveler("Beth");
-    var tFour = new Traveler("Lori");
-    var tFive = new Traveler("Britta");
+    var tOne = new Traveler("David", Math.round(Math.random() * 100), true);
+    var tTwo = new Traveler("Jagger", Math.round(Math.random() * 100), true);
+    var tThree = new Traveler("Beth", Math.round(Math.random() * 100), true);
+    var tFour = new Traveler("Lori", Math.round(Math.random() * 100), true);
+    var tFive = new Traveler("Britta", Math.round(Math.random() * 100), true);
     //create wagon
-    var wagon = new Wagon(4);
+    var wagon = new Wagon(4, []);
     //Eat
     console.log("Traveler " + tOne.name + " ate.  is Healthy: " + tOne.eat() + " Total Food: " + tOne.food);
     console.log("Traveler " + tTwo.name + " ate.  is Healthy: " + tTwo.eat() + " Total Food: " + tTwo.food);
